@@ -1,0 +1,1 @@
+java -jar -Dspring.profiles.active=dev target/suscription_service-0.0.1-SNAPSHOT.jar

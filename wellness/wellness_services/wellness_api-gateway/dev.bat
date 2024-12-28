@@ -1,0 +1,1 @@
+java -jar -Dspring.profiles.active=dev target/wellness_api-gateway-0.0.1-SNAPSHOT.jar
