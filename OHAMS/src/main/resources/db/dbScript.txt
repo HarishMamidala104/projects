@@ -1,0 +1,244 @@
+05/09/2023:
+============
+ALTER TABLE data_candidate
+ADD CONSTRAINT FK_CANDIDATE_ID FOREIGN KEY (rrf_id) REFERENCES dbadmin.data_rrf(id)
+ON DELETE CASCADE ON UPDATE CASCADE;
+
+
+DBNAME or SCHEMA NAME SHOULD GET CHANGE:
+==========================================
+ALTER TABLE data_candidate ADD COLUMN rrf_id bigint NOT NULL;
+
+
+ALTER TABLE data_candidate ADD vendor varchar(255) DEFAULT NULL;
+ALTER TABLE data_candidate ADD Creation_Date datetime(6) DEFAULT NULL;
+ALTER TABLE data_candidate ADD source varchar(255) DEFAULT NULL;
+ALTER TABLE data_candidate ADD Additional_Skills varchar(255) DEFAULT NULL;
+
+
+
+
+
+
+ALTER TABLE data_candidate MODIFY currently_serving_notice_period varchar(255) DEFAULT NULL;
+ALTER TABLE data_candidate RENAME COLUMN Additional_Skills TO additional_skills;
+
+28/08/2024 
+==========================================
+CREATE TABLE `config_requriementstatus_information` (
+  `requirementstatus_id` int NOT NULL,
+  `status_type` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`requirementstatus_id`)
+);
+
+INSERT INTO config_hiring_types_information (hire_id, hire_type)
+VALUES
+(1, 'Internal'),
+(2, 'External'),
+(3, 'Others');
+
+
+INSERT INTO config_requriementstatus_information (requirementstatus_id, status_type)
+VALUES (1,'Active'),(2,'In Active'),(3,'Won');
+
+
+INSERT INTO status (id, status)
+VALUES
+(1, 'Active'),
+(2, 'Rejected'),
+(3, 'Hold'),
+(4,'Backout'),
+(5,'Selected');
+
+config_candidatedetails_source_information
+============================================
+
+CREATE TABLE config_candidatedetails_source_information (
+  id INT,
+  source_name VARCHAR(50)
+);
+
+
+INSERT INTO  config_candidatedetails_source_information (id, source_name) VALUES 
+(1, 'Naukri'),
+(2, 'LinkedIn'),
+(3, 'Others'),
+(4, 'Vendor');
+
+notice_period
+==================
+INSERT INTO notice_period (id, noticeperiod) VALUES
+  (1, 0),
+  (2, 15),
+  (3, 30),
+  (4, 45),
+  (5, 60),
+  (6, 90);
+  
+  candidateSub_Status
+============================================================
+CREATE TABLE candidate_sub_status ( id INT PRIMARY KEY, sub_status VARCHAR(50) NOT NULL, status VARCHAR(50) NOT NULL );
+
+INSERT INTO candidate_sub_status (id, sub_status, status) VALUES
+  (1, 'HR_SELECTED', 'Active'),
+  (2, 'YET_TO_SCHEDULE', 'Active'),
+  (3, 'STAGE_1_SCHEDULED', 'Active'),
+  (4, 'STAGE_1_SELECTED', 'Active'),
+  (5, 'FEEDBACK_PENDING', 'Active'),
+  (6, 'STAGE_3_SCHEDULED', 'Active'),
+  (7, 'CLIENT_SCHEDULED', 'Active'),
+  (8, 'STAGE_2_SCHEDULED', 'Active'),
+  (9, 'SELECT_SCHEDULED', 'Active'),
+  (10, 'NLFC', 'Backout'),
+  (11, 'Retained', 'Backout'),
+  (12, 'Personal_Reasons', 'Backout'),
+  (13, 'Other_Offer', 'Backout'),
+  (14, 'No_Show', 'Backout'),
+  (15, 'HR_REJECTED', 'Rejected'),
+  (16, 'STAGE_3_REJECTED', 'Rejected'),
+  (17, 'SCREEN_REJECT', 'Rejected'),
+  (18, 'STAGE_2_REJECTED', 'Rejected'),
+  (19, 'Client_Rejected', 'Rejected'),
+  (20, 'DUPLICATE', 'Rejected'),
+  (21, 'Proxy', 'Rejected'),
+  (22, 'Manager_Rejected', 'Rejected'),
+  (23, 'STAGE_1_REJECTED', 'Rejected'),
+  (24, 'Lead_Hold', 'Hold'),
+  (25, 'Bdm_Hold', 'Hold'),
+  (26, 'Client_Hold', 'Hold'),
+  (27, 'Selection_Hold', 'Hold'),
+  (28, 'ONBOARDED', 'Selected'),
+  (29, 'OFFERED', 'Selected');
+  
+  
+  
+  
+  
+
+Mode Of Work
+==================================================
+
+
+CREATE TABLE `config_modeofwork_information` (
+  `id` int NOT NULL,
+  `workmode_type` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+);
+
+INSERT INTO  config_modeofwork_information (id, workmode_type)
+VALUES 
+(1, 'Office'),
+(2, 'Remote'),
+(3, 'ClientLocation'),
+(4, 'Hybrid');
+
+
+
+Job Type
+==================================================
+
+CREATE TABLE `config_jobtype_information` (
+  `id` int NOT NULL,
+  `job_type` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+);
+
+INSERT INTO  config_jobtype_information (id, job_type)
+VALUES 
+(1, 'Full-time'),
+(2, 'Part-time'),
+(3, 'Freelance'),
+(4, 'Contract'),
+(5, 'Temporary'),
+(6, 'Volunteer'),
+(7, 'Permanent'),
+(8, 'Internship');
+
+
+
+Priority
+==========================
+
+CREATE TABLE `config_priority_information` (
+  `id` int NOT NULL,
+  `priorityType` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+);
+
+INSERT INTO  config_priority_information (id, priorityType)
+VALUES 
+(1, 'High'),
+(2, 'Medium'),
+(3, 'Low');
+
+
+   Experience
+==========================
+CREATE TABLE `config_experience_information` (
+  `id` int NOT NULL,
+  `experience` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+);
+
+INSERT INTO  config_experience_information (id, experience)
+VALUES 
+(1, '0-3'),
+(2, '3-6'),
+(3, '6-9'),
+(4, '9-12'),
+(5, '12-15');
+ 
+
+29/08/2024 
+ ==============================================================
+ Interview type 
+  
+  
+  CREATE TABLE config_interview_type (
+    id INT PRIMARY KEY,
+    interview_type VARCHAR(255) NOT NULL
+);
+
+INSERT INTO config_interview_type (id, interview_type)VALUES
+    (1, 'OFFLINE'),
+    (2, 'ONLINE');
+	
+	
+	
+	------------------------------------------------------------------------------------
+	Add user	  role 
+	
+	  INSERT INTO role (id, name) VALUES
+    (1, 'ADMIN'),
+    (2, 'TAG_LEAD'),
+    (3, 'TAG_EXECUTIVE'),
+    (4, 'USER');
+	---------------------------------------------------------------------------
+	feedback_Status
+	
+	   CREATE TABLE config_feedback_status (
+    id INT PRIMARY KEY,
+    feedback_status VARCHAR(255) NOT NULL
+);
+
+INSERT INTO config_feedback_status (id, feedback_status)
+VALUES
+    (1, 'SELECTED'),
+    (2, 'REJECTED');	
+	--------------------------------------------------------
+customer_type
+	
+	CREATE TABLE config_customer_type (
+    id INT PRIMARY KEY,
+    customer_type VARCHAR(255) NOT NULL
+);
+
+INSERT INTO config_customer_type (id, customer_type)
+VALUES
+    (1, 'Internal'),
+    (2, 'External'),
+    (3, 'Permanent'),
+    (4, 'Contract'),
+    (5, 'Others');
+	
+	
